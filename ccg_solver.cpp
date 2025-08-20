@@ -165,10 +165,10 @@ int main(int argc, char *argv[])  // 主程式入口，接收命令列參數
                     setVarOrConstrName("ChargingPower", i, t));  // 設定變數名稱
                 // 二元變數：開始充電指示
                 Sigma[i][t] = master_model.addVar(0.0, 1.0, 0.0, GRB_BINARY,  // 新增開始充電指示變數，為二元變數
-                    setVarOrConstrName("Sigma", i, 0, t));  // 設定變數名稱 (注意：這裡的 j 為 0，可能為打字錯誤)
+                    setVarOrConstrName("Sigma", i, 0, t));  // 設定變數名稱 
                 // 二元變數：是否正在充電指示
                 I[i][t] = master_model.addVar(0.0, 1.0, 0.0, GRB_BINARY,  // 新增充電中指示變數，為二元變數
-                    setVarOrConstrName("I", i, 0, t));  // 設定變數名稱 (注意：這裡的 j 為 0，可能為打字錯誤)
+                    setVarOrConstrName("I", i, 0, t));  // 設定變數名稱 
             }
             for (int t = 0; t <= nTimeSlots; t++) {  // 迴圈遍歷每個時段，包括初始
                 // 連續變數：電池電量
@@ -402,5 +402,6 @@ int main(int argc, char *argv[])  // 主程式入口，接收命令列參數
 
     return 0;  // 程式結束，返回0表示成功
 }
+
 
 
