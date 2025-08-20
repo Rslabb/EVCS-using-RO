@@ -24,7 +24,9 @@
   - 缺點是計算複雜度高，隨著規模增加需要更多時間  
 
 ---
-
+Author:SU YU CHUN
+Email: R76101112@gs.ncku.edu.tw
+2025/8/20
 ## 📂 專案結構
 ```bash
 ├── src/                    
@@ -33,3 +35,5 @@
 │   ├── ccg_solver.c++       # C&CG 演算法
 ├── requirements.txt        # 套件需求
 └── README.md               # 說明文件
+
+
