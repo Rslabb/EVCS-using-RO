@@ -159,7 +159,7 @@ class EVChargingGame:
         # 目前情境，用第一個
         self.current_scenario = self.base_load_scenarios[0]
 
-        # 初始化起始時間與功率配置
+        # 初始化開始充電時間與功率配置
         # 每個使用者的隨機開始時間
         self.start_times = [
             random.randint(0, self.n_time_slots - self.duration[i]) for i in range(self.n_users)
@@ -466,6 +466,7 @@ class EVChargingGame:
 game = EVChargingGame(n_users=25)
 # 執行模擬
 game.run_simulation()
+
 
 
 
