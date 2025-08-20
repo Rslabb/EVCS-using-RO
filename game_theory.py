@@ -7,12 +7,12 @@ import random
 
 # 定義 EVChargingGame 類別，這是電動車充電遊戲的模擬環境
 class EVChargingGame:
-    # 初始化函數，設定使用者數、時間槽、最大充電功率、電池容量、最大基載等參數
+    # 初始化函數，設定使用者數、時間段數量、最大充電功率、電池容量、最大基礎負載參數
     def __init__(self, n_users=25, n_time_slots=24, max_charging_power=50.0, battery_capacity=60.4, max_base_load=220.0):
         # 基本參數
-        # 設定使用者數量，這裡預設25個使用者
+        # 設定使用者數量，這裡設25個使用者
         self.n_users = n_users
-        # 設定時間槽數量，一天24小時
+        # 設定時間段數量，一天24小時
         self.n_time_slots = n_time_slots
         # 最大充電功率，單位kW
         self.max_charging_power = max_charging_power
@@ -24,13 +24,13 @@ class EVChargingGame:
         self.max_base_load = max_base_load
 
         # === 固定使用者需求資料 ===
-        # 充電持續時間清單，每個使用者的充電小時數
+        # 充電持續時間，每個使用者的充電小時數
         self.duration = [
             4,6,3,5,7,2,8,6,4,3,
             5,7,2,6,4,8,3,5,7,6,
             4,2,5,3,7
         ]
-        # 所需能量清單，每個使用者的充電需求kWh
+        # 所需充電電量，每個使用者的充電需求kWh
         self.required_energy = [
             12.5,14.0,11.2,13.8,10.5,12.0,15.0,13.2,11.8,12.6,
             14.4,13.7,10.9,12.3,11.5,14.9,13.1,12.8,10.7,13.4,
@@ -47,8 +47,8 @@ class EVChargingGame:
             if self.required_energy[i] > self.max_charging_power * self.duration[i]:
                 self.required_energy[i] = self.max_charging_power * self.duration[i]
 
-        # === 固定 50 × 24 的基載情境資料 ===
-        # 50組，每組24個時段的基載功率
+        # === 50 × 24 的基礎負載情境資料 ===
+        # 50組，每組24個時段的基礎負載功率
         hard_base_load = [
     [100, 95, 90, 85, 80, 85, 95, 110, 130, 150, 170, 180,
      190, 200, 210, 220, 210, 200, 180, 160, 140, 130, 120, 110],
@@ -460,8 +460,9 @@ class EVChargingGame:
                 print(f"User {user}: Required {self.required_energy[user]:.2f} kWh, Remaining {remaining:.2f} kWh")
 
 # 建立一個遊戲實例並執行模擬
-# 建立遊戲，n_users=20
-game = EVChargingGame(n_users=20)
+# 建立遊戲，
+game = EVChargingGame(n_users=25)
 # 執行模擬
 game.run_simulation()
+
 
