@@ -292,6 +292,7 @@ class EVChargingGame:
                 best_start_time, best_power_profile, best_cost = self.find_best_response(i, start_times, power_profiles)
                 # 若策略有變化（開始時間或功率配置有差異），則更新
                 if (best_start_time != start_times[i] or 
+                    # 歐幾里得距離的平方
                     sum((a - b)**2 for a, b in zip(best_power_profile, power_profiles[i])) > tolerance**2):
                     # 更新開始時間
                     start_times[i] = best_start_time
@@ -466,6 +467,7 @@ class EVChargingGame:
 game = EVChargingGame(n_users=25)
 # 執行模擬
 game.run_simulation()
+
 
 
 
