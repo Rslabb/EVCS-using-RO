@@ -225,7 +225,7 @@ class EVChargingEnv(gym.Env):
         self.current_step += 1
         # 是否結束，如果步驟>=時間槽
         terminated = self.current_step >= self.n_time_slots
-        # truncated 固定False
+        # truncated 固定False，這個環境沒有額外強制中斷的情況
         truncated = False
         # info 包含充電功率
         info = {'charging_powers': charging_powers}
@@ -397,6 +397,7 @@ for entry in schedule_avg_base_load:
         else:
             print("  No charging activity")
     print()
+
 
 
 
