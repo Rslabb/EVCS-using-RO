@@ -374,7 +374,7 @@ for entry in worst_schedule:
         start_time = entry['start_times'][i] if entry['start_times'][i] >= 0 else -1
         # 印使用者資訊
         print(f"User {i} (required energy: {env.required_energy[i]:.2f} kWh, duration: {env.duration[i]}, start time: {start_time}):")
-        # 如果功率 > 小數
+        # 如果功率 > 容許值
         if entry['charging_powers'][i] > 1e-6:
             # 印功率、電池、剩餘
             print(f"  Power: {entry['charging_powers'][i]:.2f} kW, Battery: {entry['battery_levels'][i]:.2f} kWh, Remaining: {entry['remaining_energy'][i]:.2f} kWh")
@@ -397,6 +397,7 @@ for entry in schedule_avg_base_load:
         else:
             print("  No charging activity")
     print()
+
 
 
 
