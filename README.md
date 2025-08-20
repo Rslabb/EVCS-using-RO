@@ -30,6 +30,6 @@
 ├── src/                    
 │   ├── ppo_model.py        # PPO 演算法實作
 │   ├── game_theory.py      # 賽局理論模型
-│   ├── ccg_solver.py       # C&CG 演算法
+│   ├── ccg_solver.c++       # C&CG 演算法
 ├── requirements.txt        # 套件需求
 └── README.md               # 說明文件
