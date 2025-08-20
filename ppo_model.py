@@ -101,7 +101,7 @@ class EVChargingEnv(gym.Env):
             [112,107,102,97,92,97,107,112,102,92,77,70,62,54,49,80,80,80,80,106,108,110,108,106],
             [110,105,100,95,90,95,105,110,100,90,75,68,60,52,47,80,80,80,80,106,108,110,108,106]
         ]
-        # 預設使用第一個情境的基載
+        # 預設使用第一個情境的基礎負載
         self.current_scenario = self.base_load_scenarios[0]
 
         # State / Action space
@@ -397,6 +397,7 @@ for entry in schedule_avg_base_load:
         else:
             print("  No charging activity")
     print()
+
 
 
 
