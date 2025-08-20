@@ -275,7 +275,7 @@ for scen_idx in range(len(env.base_load_scenarios)):
     for _ in range(env.n_time_slots):
         # 預測動作
         action, _states = model.predict(obs)
-        # 一步，取得獎勵等
+        # 一步，取得獎勵等，step函數回傳 觀察、獎勵、結束、truncated、info 包含充電功率
         obs, reward, done, truncated, info = env.step(action)
         # 成本加 -獎勵
         total_cost += -reward
@@ -397,6 +397,7 @@ for entry in schedule_avg_base_load:
         else:
             print("  No charging activity")
     print()
+
 
 
 
