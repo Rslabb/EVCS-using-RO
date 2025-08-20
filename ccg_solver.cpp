@@ -276,7 +276,7 @@ int main(int argc, char *argv[])  // 主程式入口，接收命令列參數
                     double total_load = base_load_set[s][t];  // 取得當前情境和時段的基載
                     for (int i = 0; i < nUsers; i++)  // 迴圈遍歷每個使用者
                         total_load += chargingPower[i][t].get(GRB_DoubleAttr_X);  // 累加充電功率到總負載
-                    double price = 0.02 * total_load + 2;  // 計算價格：0.02 * total_load + 2 (注意：這裡+2，與主問題+3不同，可能為模型設計)
+                    double price = 0.02 * total_load + 3;  // 計算價格：0.02 * total_load + 3 
                     for (int i = 0; i < nUsers; i++)  // 迴圈遍歷每個使用者
                         cost += price * chargingPower[i][t].get(GRB_DoubleAttr_X);  // 累加價格乘以充電功率到成本
                 }
@@ -402,6 +402,7 @@ int main(int argc, char *argv[])  // 主程式入口，接收命令列參數
 
     return 0;  // 程式結束，返回0表示成功
 }
+
 
 
 
