@@ -169,7 +169,7 @@ class EVChargingGame:
             [self.required_energy[i] / self.duration[i]] * self.duration[i] for i in range(self.n_users)
         ]
 
-    # 計算所有使用者在每個時段的總充電負載
+    # 計算所有使用者在每個時段的總充電電量
     def compute_aggregate_charging(self, start_times=None, power_profiles=None, exclude_user=None):
         # 如果沒給開始時間，就用自己的
         if start_times is None:
@@ -466,6 +466,7 @@ class EVChargingGame:
 game = EVChargingGame(n_users=25)
 # 執行模擬
 game.run_simulation()
+
 
 
 
