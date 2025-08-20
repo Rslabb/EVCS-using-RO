@@ -218,12 +218,13 @@ class EVChargingGame:
                 return None, float('inf')  # 時段超出範圍，回傳無效結果
 
         # 定義成本函數：與電力使用量和電價線性相關
+        # P 代表 對某一位使用者在每個時段的充電功率 (Power profile)，它是一個向量 (list / array)，長度等於 duration（也就是使用者的充電持續時間）
         def objective(P):
             # 成本初始化0
             cost = 0.0
             # 迴圈每個 k
             for k in range(duration):
-                # 取得 P_k
+                # 取得 P_k，P[k] 就是第 k 個時段的功率
                 P_k = P[k]
                 # 加成本
                 cost +=  (0.02 * constant_t[k] + 3) * P_k
@@ -231,6 +232,7 @@ class EVChargingGame:
             return cost
 
         # 限制條件：充電總量必須等於需求
+        # 限制條件強迫 sum(P) == 使用者所需充電量。也就是不管怎麼分配，最後總能量必須等於需求。
         constraints = [{'type': 'eq', 'fun': lambda P: sum(P) - self.required_energy[user_idx]}]
         # 每個時段的功率限制，從0到最大
         bounds = [(0, self.max_charging_power)] * duration  # 每個時段的功率限制
@@ -464,5 +466,6 @@ class EVChargingGame:
 game = EVChargingGame(n_users=25)
 # 執行模擬
 game.run_simulation()
+
 
 
