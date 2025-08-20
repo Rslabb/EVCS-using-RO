@@ -4,7 +4,7 @@
 這個專案主要研究 **電動車充電排程最佳化問題**，透過三種方法進行比較：  
 - **強化學習 (PPO, Proximal Policy Optimization)**  
 - **賽局理論 (Game Theory, Nash Equilibrium)**  
-- **列與約束生成法 (C&CG, Column and Constraint Generation)**  
+- **列與約束生成演算法 (C&CG, Column and Constraint Generation)**  
 
 目標是 **降低充電成本、避免尖峰負載、並確保所有使用者需求被滿足**。
 
