@@ -317,8 +317,8 @@ schedule_avg_base_load = []
 
 # 每個時間槽
 for t in range(env.n_time_slots):
-    # 臨時設目前基載為平均
-    env.current_scenario = avg_base_load  # 臨時使用平均基載
+    # 設目前基礎負載為平均
+    env.current_scenario = avg_base_load  # 使用平均基載
     # 預測動作
     action, _states = model.predict(obs)
     # 一步
@@ -397,6 +397,7 @@ for entry in schedule_avg_base_load:
         else:
             print("  No charging activity")
     print()
+
 
 
 
