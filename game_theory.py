@@ -201,13 +201,13 @@ class EVChargingGame:
     def optimize_power_profile(self, user_idx, start_time, start_times, power_profiles):
         # 取得持續時間
         duration = self.duration[user_idx]
-       ，限制條件強迫 sum(P) == 使用者所需充電量。也就是不管怎麼分配，最後總能量必須等於需求。
+        # 限制條件強迫 sum(P) == 使用者所需充電量。也就是不管怎麼分配，最後總能量必須等於需求。
         constraints = [{'type': 'eq', 'fun': lambda P: sum(P) - self.required_energy[user_idx]}]
         # 每個時段的功率限制，從0到最大
         bounds = [(0, self.max_charging_power)] * duration  # 每個時段的功率限制
         # 初始猜測：均勻分配
         P0 = [self.required_energy[user_idx] / duration] * duration  # 初始猜測：均勻分配
-        # 用 minimize 最佳化，用 SLSQP 方法
+        # 用 minimize 最佳化，用 SLSQP 方法，bounds：每個功率輸入的可行區間，constraints是總充電電量要等於需求量
         result = minimize(objective, P0, method='SLSQP', bounds=bounds, constraints=constraints)
         # 如果成功
         if result.success:
@@ -436,6 +436,7 @@ class EVChargingGame:
 game = EVChargingGame(n_users=25)
 # 執行模擬
 game.run_simulation()
+
 
 
 
