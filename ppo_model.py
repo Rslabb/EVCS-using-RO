@@ -136,7 +136,7 @@ class EVChargingEnv(gym.Env):
             self.current_scenario = self.base_load_scenarios[scenario_idx]
         else:
             self.current_scenario = self.base_load_scenarios[0]
-        # 回傳觀察和空字典
+        # 回傳觀察和空字典，空字典 {}表示「目前沒有額外資訊要提供
         return self._get_obs(), {}
 
     # 取得目前觀察狀態
@@ -397,6 +397,7 @@ for entry in schedule_avg_base_load:
         else:
             print("  No charging activity")
     print()
+
 
 
 
