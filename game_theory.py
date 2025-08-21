@@ -201,38 +201,7 @@ class EVChargingGame:
     def optimize_power_profile(self, user_idx, start_time, start_times, power_profiles):
         # 取得持續時間
         duration = self.duration[user_idx]
-        # 計算其他人的總充電，排除自己
-        agg_charging = self.compute_aggregate_charging(start_times, power_profiles, exclude_user=user_idx)
-        # 儲存每個時段的基礎負載 + 其他車的充電量
-        constant_t = []  # 儲存每個時段的基礎負載 + 其他車的充電量
-        # 迴圈持續時間
-        for k in range(duration):
-            # 計算 t
-            t = start_time + k
-            # 如果 t 在範圍內
-            if t < self.n_time_slots:
-                # 加到 constant_t
-                constant_t.append(self.current_scenario[t] + agg_charging[t])
-            else:
-                # 超出範圍，回傳無效
-                return None, float('inf')  # 時段超出範圍，回傳無效結果
-
-        # 定義成本函數：與電力使用量和電價線性相關
-        # P 代表 對某一位使用者在每個時段的充電功率 (Power profile)，它是一個向量 (list / array)，長度等於 duration（也就是使用者的充電持續時間）
-        def objective(P):
-            # 成本初始化0
-            cost = 0.0
-            # 迴圈每個 k
-            for k in range(duration):
-                # 取得 P_k，P[k] 就是第 k 個時段的功率
-                P_k = P[k]
-                # 加成本
-                cost +=  (0.02 * constant_t[k] + 3) * P_k
-            # 回傳成本
-            return cost
-
-        # 限制條件：充電總量必須等於需求
-        # 限制條件強迫 sum(P) == 使用者所需充電量。也就是不管怎麼分配，最後總能量必須等於需求。
+       ，限制條件強迫 sum(P) == 使用者所需充電量。也就是不管怎麼分配，最後總能量必須等於需求。
         constraints = [{'type': 'eq', 'fun': lambda P: sum(P) - self.required_energy[user_idx]}]
         # 每個時段的功率限制，從0到最大
         bounds = [(0, self.max_charging_power)] * duration  # 每個時段的功率限制
@@ -467,6 +436,7 @@ class EVChargingGame:
 game = EVChargingGame(n_users=25)
 # 執行模擬
 game.run_simulation()
+
 
 
 
