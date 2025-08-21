@@ -248,7 +248,7 @@ env = EVChargingEnv(n_users=5)
 # 檢查環境有沒有問題
 check_env(env)
 
-# 建立 PPO 模型，用 MlpPolicy，verbose=1，學習率0.0003，步驟4096，批次256，用cpu
+# 建立 PPO 模型，用 MlpPolicy，verbose=1，學習率0.0003，步驟4096，批次256，用cpu，verbose=1只會輸出最重要的訓練進度資訊
 model = PPO("MlpPolicy", env, verbose=1, learning_rate=0.0003, n_steps=4096, batch_size=256, device='cpu')
 # 訓練模型，總步驟500000
 model.learn(total_timesteps=500000)
@@ -397,6 +397,7 @@ for entry in schedule_avg_base_load:
         else:
             print("  No charging activity")
     print()
+
 
 
 
