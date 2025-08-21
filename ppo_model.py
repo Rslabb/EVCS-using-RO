@@ -13,7 +13,7 @@ import random
 
 # 定義 EVChargingEnv 類別，繼承自 gym.Env，這是電動車充電的環境模擬
 class EVChargingEnv(gym.Env):
-    # 初始化函數，設定使用者數、時間槽、最大充電功率、電池容量、最大基載等參數
+    # 初始化函數，設定使用者數、時間槽、最大充電功率、電池容量、最大基載參數
     def __init__(self, n_users=5, n_time_slots=24, max_charging_power=50.0, battery_capacity=60.4,
                  max_base_load=220.0):
         # 呼叫父類別的初始化
@@ -397,6 +397,7 @@ for entry in schedule_avg_base_load:
         else:
             print("  No charging activity")
     print()
+
 
 
 
