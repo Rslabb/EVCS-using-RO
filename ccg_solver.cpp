@@ -266,7 +266,8 @@ int main(int argc, char *argv[])  // 主程式入口，接收命令列參數
             master_model.update();  // 更新模型，讓新約束生效
 
             // 設定並求解主問題
-            master_model.setObjective(eta, GRB_MINIMIZE);   // 設定目標函數為最小化 eta
+            GRBLinExpr objective_func = eta;
+            master_model.setObjective(objective_func, GRB_MINIMIZE);   // 設定目標函數為最小化 eta
             master_model.write(to_string(iter) + "master.lp"); // 輸出 LP 檔，用來儲存模型
             master_model.optimize();  // 求解模型
             Lower_bound = master_model.get(GRB_DoubleAttr_ObjVal); // 更新下界為目標值
@@ -406,6 +407,7 @@ int main(int argc, char *argv[])  // 主程式入口，接收命令列參數
 
     return 0;  // 程式結束，返回0表示成功
 }
+
 
 
 
